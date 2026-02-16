@@ -55,4 +55,10 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Retrofit for Network Calls
+    implementation(libs.retrofit)
+
+    // GSON Converter (to turn JSON into our Bad JokeResponse)
+    implementation(libs.converter.gson)
 }
