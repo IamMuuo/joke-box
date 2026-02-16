@@ -12,9 +12,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".JokeBoxApp"
         android:theme="@style/Theme.JokeBox">
         <activity
-            android:name=".ui.screens.JokeBoxScreen"
+            android:name=".presentation.screens.JokeBoxScreen"
             android:exported="false"
             android:label="@string/title_activity_joke_box_screen"
             android:theme="@style/Theme.JokeBox" />

@@ -66,4 +66,9 @@ dependencies {
     implementation(libs.converter.gson)
 
     implementation(libs.coil.compose)
+
+    // Koin Core features
+    implementation(libs.koin.android)
+    // Koin for Jetpack Compose
+    implementation(libs.insert.koin.koin.androidx.compose)
 }
