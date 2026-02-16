@@ -9,10 +9,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import io.opencrafts.jokebox.screens.AboutDeveloperScreen
-import io.opencrafts.jokebox.screens.JokeBoxScreen
+import io.opencrafts.jokebox.presentation.screens.AboutDeveloperScreen
+import io.opencrafts.jokebox.presentation.screens.JokeBoxScreen
 import io.opencrafts.jokebox.ui.theme.JokeBoxTheme
-import io.opencrafts.jokebox.viewmodel.JokeViewModel
+import io.opencrafts.jokebox.presentation.viewmodels.JokeViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
