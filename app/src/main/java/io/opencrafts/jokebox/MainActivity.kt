@@ -9,19 +9,37 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import io.opencrafts.jokebox.screens.AboutDeveloperScreen
-import io.opencrafts.jokebox.screens.JokeBoxScreen
+import io.opencrafts.jokebox.data.datasource.JokeApi
+import io.opencrafts.jokebox.data.datasource.JokeRemoteDataSource
+import io.opencrafts.jokebox.data.repository.JokeRepositoryImpl
+import io.opencrafts.jokebox.domain.usecases.GetJokeUseCase
+import io.opencrafts.jokebox.presentation.screens.AboutDeveloperScreen
+import io.opencrafts.jokebox.presentation.screens.JokeBoxScreen
 import io.opencrafts.jokebox.ui.theme.JokeBoxTheme
-import io.opencrafts.jokebox.viewmodel.JokeViewModel
+import io.opencrafts.jokebox.presentation.viewmodels.JokeViewModel
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://v2.jokeapi.dev/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val jokeApi = retrofit.create(JokeApi::class.java)
+
+        // 2. Setup Data Sources & Repository
+        val remoteDataSource = JokeRemoteDataSource(jokeApi)
+        val repository = JokeRepositoryImpl(remoteDataSource)
+
+        // 3. Setup Use Case (The Business Logic)
+        val getJokeUseCase = GetJokeUseCase(repository)
+        val jokeViewModel: JokeViewModel = JokeViewModel(getJokeUseCase)
+
         setContent {
             JokeBoxTheme {
-
-                val viewModel = JokeViewModel()
                 var showAboutPage by remember { mutableStateOf(false) }
                 
                 Crossfade(targetState = showAboutPage, label = "ScreenTransition") { isAboutPage ->
@@ -29,7 +47,7 @@ class MainActivity : ComponentActivity() {
                         AboutDeveloperScreen(onBack = { showAboutPage = false })
                     } else {
                         JokeBoxScreen(
-                            viewModel = viewModel,
+                            viewModel = jokeViewModel,
                             onInfoClick = { showAboutPage = true }
                         )
                     }

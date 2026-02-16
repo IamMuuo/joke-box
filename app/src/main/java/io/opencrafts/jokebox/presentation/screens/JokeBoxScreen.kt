@@ -1,4 +1,4 @@
-package io.opencrafts.jokebox.screens
+package io.opencrafts.jokebox.presentation.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -20,10 +19,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import io.opencrafts.jokebox.components.FlippableJokeCard
-import io.opencrafts.jokebox.viewmodel.JokeViewModel
+import io.opencrafts.jokebox.presentation.components.FlippableJokeCard
+import io.opencrafts.jokebox.presentation.viewmodels.JokeUiState
+import io.opencrafts.jokebox.presentation.viewmodels.JokeViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,8 +32,7 @@ fun JokeBoxScreen(
     viewModel: JokeViewModel,
     onInfoClick: () -> Unit
 ) {
-val joke = viewModel.jokeState
-    val isLoading = viewModel.isLoading
+    val state = viewModel.uiState
     Scaffold(
         topBar = {
             LargeTopAppBar(
@@ -70,11 +69,14 @@ val joke = viewModel.jokeState
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
-            if(isLoading){
-                CircularProgressIndicator()
-            }
-            else if(joke != null){
-                FlippableJokeCard(joke.setup?:"" ,joke.delivery?:"")
+            when(state){
+                is JokeUiState.Loading -> CircularProgressIndicator()
+                is JokeUiState.Success -> {
+                    FlippableJokeCard(state.joke.setup, state.joke.punchLine)
+                }
+                is JokeUiState.Error -> Text("Error: ${state.message}", color = Color.Red)
+                is JokeUiState.Empty -> Text("Press the button to get started!")
+
             }
         }
     }
