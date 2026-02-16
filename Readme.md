@@ -1,15 +1,15 @@
 <div align="center">
   <img src="./BrandKit/app-icon.png" width="120" height="120" style="border-radius: 50%;">
-
+</div>
 # Mastering the 'D' in SOLID
 
 JokeBox is an Android application designed to demonstrate the implementation of the Dependency Inversion Principle (DIP) within a Clean Architecture framework. This project is to be featured and presented at **Android 254** on February 21, 2026, as a live case study on evolving software architecture.
 
 ## App Preview
 
-| Screenshot 1 | Screenshot 2 | Screenshot 3 |
-| :---: | :---: | :---: |
-| <img src="./BrandKit/image1.jpeg" width="32%"> | <img src="./BrandKit/image2.jpeg" width="32%"> | <img src="./BrandKit/image3.jpeg" width="32%"> |
+|                  Screenshot 1                  |                  Screenshot 2                  |                  Screenshot 3                  |
+|:----------------------------------------------:|:----------------------------------------------:|:----------------------------------------------:|
+| <img src="./BrandKit/image1.jpeg" width="50%"> | <img src="./BrandKit/image2.jpeg" width="50%"> | <img src="./BrandKit/image3.jpeg" width="50%"> |
 
 ## Technical Specifications
 
