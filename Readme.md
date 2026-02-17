@@ -69,7 +69,10 @@ The repository is tagged to show the step-by-step evolution of the architecture:
 ## Installation
 
 1. Clone the repository:
-   git clone [https://github.com/iammuuo/joke-box.git](https://www.google.com/search?q=https://github.com/iammuuo/joke-box.git)
+    ```bash
+    git clone https://github.com/IamMuuo/joke-box.git
+    ```
+
 2. Open the project in Android Studio (Ladybug or newer).
 3. Build and run the application.
 

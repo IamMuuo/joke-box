@@ -115,7 +115,7 @@ fun AboutDeveloperScreen(onBack: () -> Unit) {
                 subtitle = "Mastering the 'D' Repo",
                 icon = Icons.Default.Star,
                 color = MaterialTheme.colorScheme.tertiaryContainer,
-                onClick = { uriHandler.openUri("https://github.com/IamMuuo/jokebox") }
+                onClick = { uriHandler.openUri("https://github.com/IamMuuo/joke-box") }
             )
         }
     }
